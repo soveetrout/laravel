@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,14 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/login', function () {
+    return view('auth\login');
+})->name('login');
+
+Route::get('/register', function () {
+    return view('auth\register');
+})->name('register');
+
 
 
 Route::get('/',[HomeController::class,'index']);
@@ -29,3 +39,11 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('/add_doctor_view',[AdminController::class,'addview']);
+
+
+Route::post('/upload_doctor',[AdminController::class,'upload']);
+
+Route::post('/appointment',[HomeController::class,'appointment']);
